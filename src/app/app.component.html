@@ -1,0 +1,109 @@
+<div>Reactive Form Example</div>
+<button style="padding:10px" (click)="onReset()">Add User</button>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+   <div class="inputField form-group">
+      <label>FirstName</label>
+      <input type="text" class="form-control" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+      <div *ngIf="f.firstName.errors.required">First Name is required</div>
+  </div>
+   </div>
+   <div class="inputField form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+      <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+      <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+  </div>
+   </div>
+   <div class="inputField form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+      <div *ngIf="f.email.errors.required">Email is required</div>
+      <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+  </div>
+   </div>
+   <div class="inputField form-group">
+      <label>Pfone</label>
+      <input type="number" class="form-control" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+      <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+      <div *ngIf="f.phone.errors.required">Phone is required</div>
+      <div *ngIf="f.password.errors.minlength">Phone Number must be at least 10 Number</div>
+  </div>
+   </div>
+   <div class="inputField form-group">
+      <label>Company</label>
+      <input type="text" class="form-control" formControlName="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }">
+      <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+      <div *ngIf="f.company.errors.required">Company is required</div>
+  </div>
+   </div>
+   <div class="inputField form-group">
+      <div>Gender</div>
+      <div>
+      <label>Male</label>
+      <input id="male" type="radio" value="male" name="gender" class="form-control" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+      <!-- <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+      <div *ngIf="f.gender.errors.required">First Name is required</div>
+  </div> -->
+      </div>
+      <div>
+      <label>Female</label>
+      <input id="female" type="radio"  value="female" name="gender" class="form-control" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+      <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+      <div *ngIf="f.gender.errors.required">Gender is required</div>
+  </div>
+      </div>
+   </div>
+   <div class="inputField form-group">
+   <label>DOB</label>
+   <input type="date" class="form-control" formControlName="dob" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }">
+   <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+   <div *ngIf="f.dob.errors.required">DOB is required</div>
+</div>
+</div>
+<div class="inputField form-group">
+<label>Password</label>
+<input type="text" class="form-control" formControlName="pwd" [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }">
+<div *ngIf="submitted && f.pwd.errors" class="invalid-feedback">
+<div *ngIf="f.pwd.errors.required">Password is required</div>
+</div>
+</div>
+<div class="inputField form-group">
+<label>Confirm Password</label>
+<input type="text" class="form-control" formControlName="cpwd" [ngClass]="{ 'is-invalid': submitted && f.cpwd.errors }">
+<div *ngIf="submitted && f.cpwd.errors" class="invalid-feedback">
+<div *ngIf="f.cpwd.errors.required">Confirm Password is required</div>
+</div>
+</div>
+<div >
+<button  style="padding:10px">Register</button>
+<button style="padding:10px"  type="reset" (click)="onReset()">Cancel</button>
+</div>
+</form>
+<table >
+<thead >
+<tr>
+  <th >FirstName</th>
+  <th >lastName</th>
+  <th >Email</th>
+  <th >Phone</th>
+  <th >Company</th>
+  <th >DOB</th>
+  <th >Edit</th>
+  <th >Delete</th>
+</tr>
+</thead>
+<tbody >
+<tr my-active *ngFor="let user of users">
+  <td >{{user.firstName}}</td>
+  <td >{{user.lastName}}</td>
+  <td >{{user.email}}</td>
+  <td >{{user.phone}}</td>
+  <td >{{user.company}}</td>
+  <td >{{user.dob}}</td>
+  <button (click)="onEdit(user)" >Edit</button>
+  <button (click)="onDelete(user)">Delete</button>
+</tr>
+</tbody>
+</table>
